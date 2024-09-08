@@ -2,7 +2,7 @@
 
 A simple phone book API that allows you to manage contacts. This API provides functionality to create, update, delete, and search contacts in the phone book.
 
-## Setup
+## Setup & Run
 
 ```
 cd phone-book
