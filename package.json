@@ -1,0 +1,27 @@
+{
+  "name": "phone-book",
+  "version": "2024.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && npx tsc",
+    "start": "node dist/index.js",
+    "test": "jest -i -b --detectOpenHandles"
+  },
+  "dependencies": {
+    "@jest/globals": "^29.7.0",
+    "ajv": "^8.17.1",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "http-status-codes": "^2.3.0",
+    "mongodb": "^6.8.0",
+    "supertest": "^7.0.0",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/jest": "^29.5.12",
+    "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  }
+}

@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: phone-book-mongodb
+    ports:
+      - "28017:27017"
+    volumes:
+      - ./mongo-data:/data/db
+    restart: unless-stopped
+    networks:
+      - phone-book-network
+
+  server:
+      build:
+        context: ./
+        dockerfile: ./Dockerfile
+      container_name: phone-book-server
+      ports:
+        - "7010:7010"
+      environment:
+        MONGO_URL: mongodb://mongo:27017/phone-book
+      depends_on:
+        - mongo
+      networks:
+        - phone-book-network
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    container_name: phone-book-tests
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URL: mongodb://mongo:27017/tests
+    networks:
+      - phone-book-network
+    command: npm run test
+
+networks:
+  phone-book-network:
+    name: phone-book-network
+    driver: bridge
